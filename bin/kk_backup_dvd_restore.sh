@@ -17,8 +17,8 @@
 
 par2 repair "${1}"xxxx
 
-mkdir "${1}"
+mkdir "kk_output_dvd"
 
 cat "${1}"???? \
     | openssl enc -d -aes-256-cbc \
-    | tar -xzf - --directory="$1"
+    | tar -xzf - --directory="kk_output_dvd"

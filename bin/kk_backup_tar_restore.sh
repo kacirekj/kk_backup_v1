@@ -15,11 +15,11 @@
 # Warning:
 #   Do not use initial "/" when specifying the file paths!
 
-mkdir output
+mkdir kk_output_tar
 
 for TAR_FILE in /mnt/debian_backup/tar_backup/backup_*.tar; do
     tar --extract --verbose --listed-incremental=/dev/null \
-        --file="$TAR_FILE" --directory=output "$@"
+        --file="$TAR_FILE" --directory=kk_output_tar "$@"
 done
 
 echo "Finished"
