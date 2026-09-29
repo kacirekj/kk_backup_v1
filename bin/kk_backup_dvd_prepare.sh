@@ -12,7 +12,7 @@ set -euo pipefail
 # Examples:
 #   kk_backup_dvd_prepare.sh /home/debian /root /etc
 
-TIMESTAMP=$(date +%Y_%m_%d)
+TIMESTAMP="$(date +%Y_%m_%d_T_%H_%M)"
 
 tar --create -v --gzip -f - "$@" \
     | openssl enc -aes-256-cbc \
