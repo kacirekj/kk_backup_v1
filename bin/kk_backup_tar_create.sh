@@ -19,14 +19,15 @@ fi
 tar -cv \
     -g "/mnt/debian_backup/tar_backup/backup.snar" \
     -f "/mnt/debian_backup/tar_backup/backup_$(date +%Y_%m_%d_T_%H_%M).tar" \
-    --exclude='./home/debian/tmp/*' \
-    --exclude='./home/debian/Desktop/*' \
     --exclude='./home/debian/.local/share/Trash/*' \
+    --exclude='./home/debian/Desktop/*' \
+    --exclude='./home/debian/Videos/*' \
+    --exclude='./home/debian/tmp/*' \
     --exclude='./root/tmp/*' \
     -C / \
     ./home/debian \
-    ./root \
-    ./mnt/debian_backup/tar_backup/*.snar
+    ./mnt/debian_backup/tar_backup/backup.snar \
+    ./root
 
 # Backup current snar
 
