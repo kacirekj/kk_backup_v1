@@ -17,7 +17,7 @@
 
 mkdir output
 
-for TAR_FILE in /Volumes/mac_backup/tar_backup/backup_*.tar; do
+for TAR_FILE in /mnt/debian_backup/tar_backup/backup_*.tar; do
     tar --extract --verbose --listed-incremental=/dev/null \
         --file="$TAR_FILE" --directory=output "$@"
 done
