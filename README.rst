@@ -34,7 +34,7 @@ You need:
 4. GNU Tar installed. On Linux, it is usually available by default. On macOS,
    you must install it with Homebrew::
 
-       brew install gtar
+       brew install gnu-tar
 
 5. In some point of time, you should take a look into all that scripts and read
    the comments.

@@ -12,10 +12,12 @@ set -euo pipefail
 # Examples:
 #   kk_backup_dvd_prepare.sh /home/debian /root /etc
 
+TIMESTAMP=$(date +%Y_%m_%d)
+
 tar --create -v --gzip -f - "$@" \
     | openssl enc -aes-256-cbc \
-    | split -d -a 4 -b 46500000 - "dvd_backup_$(date +%Y_%m_%d).tar.gz.ossl-aes-256-cbc.split_"
+    | split -d -a 4 -b 46500000 - "dvd_backup_${TIMESTAMP}.tar.gz.ossl-aes-256-cbc.split_"
 
 par2 create -r20 -n30 -u \
-    "dvd_backup_$(date +%Y_%m_%d).tar.gz.ossl-aes-256-cbc.split_xxxx" \
-    "dvd_backup_$(date +%Y_%m_%d).tar.gz.ossl-aes-256-cbc.split_"*
+    "dvd_backup_${TIMESTAMP}.tar.gz.ossl-aes-256-cbc.split_xxxx" \
+    "dvd_backup_${TIMESTAMP}.tar.gz.ossl-aes-256-cbc.split_"*
