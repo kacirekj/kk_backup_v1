@@ -22,6 +22,7 @@ tar -cv \
     --exclude='./home/debian/.local/share/Trash/*' \
     --exclude='./home/debian/Desktop/*' \
     --exclude='./home/debian/Videos/*' \
+    --exclude='./home/debian/Downloads/*' \
     --exclude='./home/debian/tmp/*' \
     --exclude='./root/tmp/*' \
     -C / \
