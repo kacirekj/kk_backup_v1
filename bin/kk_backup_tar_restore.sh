@@ -22,5 +22,3 @@ for TAR_FILE in /mnt/debian_backup/tar_backup/backup_*.tar; do
     tar --extract --verbose --listed-incremental=/dev/null \
         --file="$TAR_FILE" --directory=kk_output_tar "$@"
 done
-
-echo "Finished"
