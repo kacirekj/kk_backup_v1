@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # It fully extracts all TARs from the configured path.
 #

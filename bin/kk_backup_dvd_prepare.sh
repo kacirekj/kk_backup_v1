@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # It creates files suitable to be burned on optical discs.
 #

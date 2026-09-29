@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # It re-construct original files which has been processed by
 # the kk_backup_dvd_prepare.sh.

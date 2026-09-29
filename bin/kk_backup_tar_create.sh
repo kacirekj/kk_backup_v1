@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # It creates initial or incremental TAR backup into configured target directory.
 #
@@ -16,9 +17,11 @@ fi
 
 # Create backup
 
+TIMESTAMP="$(date +%Y_%m_%d_T_%H_%M)"
+
 tar -cv \
     -g "/mnt/debian_backup/tar_backup/backup.snar" \
-    -f "/mnt/debian_backup/tar_backup/backup_$(date +%Y_%m_%d_T_%H_%M).tar" \
+    -f "/mnt/debian_backup/tar_backup/backup_${TIMESTAMP}.tar" \
     --exclude='./home/debian/.local/share/Trash/*' \
     --exclude='./home/debian/Desktop/*' \
     --exclude='./home/debian/Videos/*' \
@@ -33,4 +36,4 @@ tar -cv \
 # Backup current snar
 
 cp  "/mnt/debian_backup/tar_backup/backup.snar" \
-    "/mnt/debian_backup/tar_backup/backup_$(date +%Y_%m_%d_T_%H_%M).snar"
+    "/mnt/debian_backup/tar_backup/backup_${TIMESTAMP}.snar"
