@@ -10,14 +10,14 @@ set -euo pipefail
 
 # Validate
 
-if [[ -f "/mnt/debian_backup/tar_backup/backup_$(date +%Y_%m_%d_T_%H_%M).tar" ]]; then
+TIMESTAMP="$(date +%Y_%m_%d_T_%H_%M)"
+
+if [[ -f "/mnt/debian_backup/tar_backup/backup_${TIMESTAMP}.tar" ]]; then
     echo "Backup file already exists. Wait for a while."
     exit 1
 fi
 
 # Create backup
-
-TIMESTAMP="$(date +%Y_%m_%d_T_%H_%M)"
 
 tar -cv \
     -g "/mnt/debian_backup/tar_backup/backup.snar" \
