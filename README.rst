@@ -2,7 +2,7 @@
 kk_backup_v1
 ============
 
-A complete and easy-to-grasp TAR and optical disc backup solution for Linux and macOS.
+A complete and easy-to-understand TAR and optical disc backup solution for Linux and macOS.
 
 What it is good for
 ===================
@@ -36,7 +36,7 @@ You need:
 
        brew install gnu-tar
 
-5. In some point of time, you should take a look into all that scripts and read
+5. At some point, you should take a look at all the scripts and read
    the comments.
 
 
@@ -73,6 +73,7 @@ Configure
 
        Default DVD-R    46.5 MB:   split -d -a 4 -b 46500000
                DVD-R DL 84.5 MB:   split -d -a 4 -b 84500000
+               BD-R    249.5 MB:   split -d -a 4 -b 249500000
 
 4. If you use macOS, make sure all occurrences of ``tar`` are replaced with
    ``gtar``, which you installed with Homebrew.
@@ -81,52 +82,71 @@ Configure
 Usage
 =====
 
-Create the first full backup
-----------------------------
+1 Create the first full backup
+------------------------------
 
-1. Create the initial TAR archive::
+-  Create the initial TAR archive::
 
        kk_backup_tar_create.sh
 
-2. Prepare files for the initial set of DVDs::
+
+2 Create an incremental backup
+------------------------------
+
+-  Just call the same script again::
+
+       kk_backup_tar_create.sh
+
+
+3 Burn backup to DVD
+--------------------
+
+1. Prepare files for the initial set of DVDs::
 
        cd /home/debian/tmp
        kk_backup_dvd_prepare.sh /mnt/debian_backup/tar_backup/backup_2026_01_01_T_00_00.*
 
    .. WARNING::
 
-       Use the ``00.*`` wildcard to include the ``snar`` files on the DVDs as well!
+       It is useful to use the ``.*`` wildcard so that the corresponding ``snar``
+       files are included on the DVDs as well.
 
-3. Burn the DVDs using your favorite software.
+2. Burn files to DVD with your favorite burning software.
 
    .. NOTE::
 
-       Each DVD will contain a maximum of 100 files, except for the last DVDs,
-       where the recovery PAR2 files must be placed manually to make use of the
-       remaining free space on the disc.
+        Each DVD will contain a maximum of 100 split data files, except for the
+        last DVDs, where the recovery PAR2 files must be placed manually to make
+        use of the remaining free space on the disc.
 
 
-Create an incremental backup
-----------------------------
-
-1. Create an incremental TAR archive::
-
-       kk_backup_tar_create.sh
-
-2. Optionally, burn the newly created incremental TAR archive to DVD::
-
-       cd /home/debian/tmp
-       rm *
-       kk_backup_dvd_prepare.sh /mnt/debian_backup/tar_backup/backup_2026_02_01_T_00_00.tar
-
-
-Full recovery from DVD
-----------------------
+4 Full recovery from DVD
+------------------------
 
 Use this procedure when your data has been lost from the external drive.
 
-1. Copy all files from the DVDs to a single local directory::
+1. Copy all files from the DVDs to a local directory::
 
        cd /home/debian/tmp
        cp /mnt/cdrom0/* .
        cp /mnt/cdrom0/* .
+       ...
+
+2. Recover the original backup files from the DVD files::
+
+       kk_backup_dvd_restore.sh dvd_backup_2026_01_01_T_00_00.tar.gz.ossl-aes-256-cbc.split_
+       cd kk_output_dvd
+
+   .. WARNING::
+
+       Be precise with the prefix; it always ends with ``.split_``!
+
+3. Move recovered backup files back to their original destination on your external drive::
+
+       mv * /mnt/debian_backup/tar_backup
+
+4. To recover the original directories and files backed up with tar, use::
+
+       cd /mnt/debian_backup/tar_backup
+       kk_backup_tar_restore.sh
+       cd kk_output_tar
