@@ -11,7 +11,7 @@ set -euo pipefail
 #   PREFIX      Common prefix of the kk_backup_dvd_prepare.sh output files
 #
 # Examples:
-#   kk_backup_dvd_restore.sh backup.tar.ossl-aes-256-cbc.split_
+#   kk_backup_dvd_restore.sh backup.tar.ossl_aes_256_cbc.split_
 #
 # Warning:
 #   Be precise with the provided prefix!

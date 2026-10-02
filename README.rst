@@ -134,7 +134,7 @@ Use this procedure when your data has been lost from the external drive.
 
 2. Recover the original backup files from the DVD files::
 
-       kk_backup_dvd_restore.sh dvd_backup_2026_01_01_T_00_00.tar.gz.ossl-aes-256-cbc.split_
+       kk_backup_dvd_restore.sh dvd_backup_2026_01_01_T_00_00.tar.gz.ossl_aes_256_cbc.split_
        cd kk_output_dvd
 
    .. WARNING::
@@ -156,12 +156,12 @@ Known limitations
 =================
 
 -  The GNU Tar is unable to handle properly re-naming of the super-parent
-   directory. This will be handled properly:
+   directory. This will be handled properly::
 
        Movies/Matrix/Matrix.avi -> Movies/Matrix_2/Matrix.avi
 
    However, in this scenario the Gnu Tar will include ``Matrix.avi`` into
-   newly created incremental backup archive:
+   newly created incremental backup archive::
 
        Movies/Matrix/Matrix.avi -> Movies_2/Matrix/Matrix.avi
 
