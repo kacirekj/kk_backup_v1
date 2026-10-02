@@ -150,3 +150,21 @@ Use this procedure when your data has been lost from the external drive.
        cd /mnt/debian_backup/tar_backup
        kk_backup_tar_restore.sh
        cd kk_output_tar
+
+
+Known limitations
+=================
+
+-  The GNU Tar is unable to handle properly re-naming of the super-parent
+   directory. This will be handled properly:
+
+       Movies/Matrix/Matrix.avi -> Movies/Matrix_2/Matrix.avi
+
+   However, in this scenario the Gnu Tar will include ``Matrix.avi`` into
+   newly created incremental backup archive:
+
+       Movies/Matrix/Matrix.avi -> Movies_2/Matrix/Matrix.avi
+
+   Be aware that although this is not ideal, it's still better that
+   incremental backups with ``rsync`` or ``duplicity`` which can't handle
+   directory renaming at all.
